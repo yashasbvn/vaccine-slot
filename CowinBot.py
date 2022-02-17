@@ -1,3 +1,6 @@
+########### Created in May 2021 by Yashas BVN ########################
+########## Running this code will trigger email alerts when COVID-19 vaccines are available at a Pincode of your choice ###############
+
 import smtplib, ssl
 import requests
 import json
@@ -25,9 +28,8 @@ current_time = time.strftime("%H:%M:%S", time_now)
 
 url_urban = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=265&date="+tomorrow_date
 url_bbmp = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=294&date="+tomorrow_date
-url_dummy = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=190015&date=23-05-2021"
 
-
+#A get request to geth the response from the API
 r= requests.get(url = url_urban, headers = headers)
 content1 = r.content
 #print(r.content)
@@ -41,6 +43,7 @@ receiver_email = ['example@email.com']  # Enter receiver address
 password = "" #getpass("Please type your password:")
 message = str(content)
 
+#Saving into a text file
 open('session.json', 'w').close()
 text_file = open("session.json", "w")
 n = text_file.write(str(content1)[1:].replace("'",""))
